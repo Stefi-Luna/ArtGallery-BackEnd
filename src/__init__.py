@@ -7,5 +7,5 @@ app= Flask(__name__)
 
 def init_app(config):
     app.config.from_object(config)
-    app.register_blueprint(UsersRouter.main, url_prefix='/productos')
+    app.register_blueprint(UsersRouter.main, url_prefix='/adminpage')
     return app

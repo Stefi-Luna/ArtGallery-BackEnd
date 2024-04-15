@@ -2,12 +2,12 @@ from flask import Blueprint, request
 from src.services.AdminServices import AdminServices
 from src.models.userModel import Users
 
-main = Blueprint('userspost_users_blueprint',__name__)
+main = Blueprint('users_blueprint',__name__)
 
 @main.route('/', methods=['GET'])
 def get_users():
     
-    get_userspost_users=AdminServices.get_users()
+    get_users=AdminServices.get_users()
     print(get_users)
 
     print('Esto se imprime en consola, GET')

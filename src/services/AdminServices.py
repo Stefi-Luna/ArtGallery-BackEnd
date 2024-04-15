@@ -15,55 +15,54 @@ class AdminServices():
                 print(result)
             
             connection.close()
-            return 'Lista mostrada'
+            return 'Users showed'
 
         except Exception as ex:
             print(ex)
 
     @classmethod
-    def post_products(cls,product: Users):
+    def post_users(cls, user: Users):
         try:
             connection= get_connection()
             print(connection)
 
             with connection.cursor() as admin_page:
-                ID_User=ID_User
-                Name=Name
-                Phone=Phone
-                Email=Email
-                Password=Password
+                ID_User = user.ID_User
+                Name = user.Name
+                Phone = user.Phone
+                Email = user.Email
+                Password = user.Password
                 
                 admin_page.execute("INSERT INTO `user` (`ID_User`, `Name`, `Phone`, `Email`, `Password`) VALUES (%s, %s, %s, %s, %s);",
                                      (ID_User, Name, Phone, Email, Password,))
                 connection.commit()
             
             connection.close()
-            return 'user ingresado'
+            return 'User new posted'
 
         except Exception as ex:
             print(ex)
 
 
     @classmethod
-    def update_products(cls, product: Users):
+    def update_users(cls, user: Users):
         try:
             connection = get_connection()
             print(connection)
 
             with connection.cursor() as admin_page:
-                ID_User = product.ID_User
-                Name = product.Name
-                Phone = product.Phone
-                Email = product.Email
-                Password = product.Password
-                Stock = product.Stock
+                ID_User = user.ID_User
+                Name = user.Name
+                Phone = user.Phone
+                Email = user.Email
+                Password = user.Password
 
-                admin_page.execute("UPDATE user SET Name = %s, Phone = %s, Email = %s, Password = %s, Stock = %s WHERE ID_User = %s",
-                                     (Name, Phone, Email, Password, Stock, ID_User))
+                admin_page.execute("UPDATE user SET Name = %s, Phone = %s, Email = %s, Password = %s WHERE ID_User = %s",
+                                     (Name, Phone, Email, Password, ID_User))
                 connection.commit()
 
             connection.close()
-            return 'user actualizado'
+            return 'User updated'
 
         except Exception as ex:
             print(ex)
@@ -71,7 +70,7 @@ class AdminServices():
 
 
     @classmethod
-    def delete_products(cls, ID_User: int):
+    def delete_users(cls, ID_User: int):
         try:
             connection = get_connection()
             print(connection)
@@ -82,7 +81,7 @@ class AdminServices():
                 connection.commit()
 
             connection.close()
-            return 'user eliminado'
+            return 'User removed'
 
         except Exception as ex:
             print(ex)
