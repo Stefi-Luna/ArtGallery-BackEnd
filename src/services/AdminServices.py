@@ -12,10 +12,24 @@ class AdminServices():
             with connection.cursor() as admin_page:
                 admin_page.execute('SELECT * FROM user')
                 result= admin_page.fetchall()
-                print(result)
+
+            user_objects = []
+            for user in result:
+                usuario = {
+                    'ID_User': user[0],
+                    'ID_Usertype': user[1],
+                    'Name': user[2],
+                    'Phone': user[3],
+                    'Email': user[4],
+                    'Password': user[5],
+                    # Añade más campos según la estructura de tu tabla 'user'
+                }
+                user_objects.append(usuario)
+
+            print(result)
             
             connection.close()
-            return 'Users showed'
+            return user_objects
 
         except Exception as ex:
             print(ex)
@@ -27,14 +41,14 @@ class AdminServices():
             print(connection)
 
             with connection.cursor() as admin_page:
-                ID_User = user.ID_User
+                ID_Usertype = user.ID_Usertype
                 Name = user.Name
                 Phone = user.Phone
                 Email = user.Email
                 Password = user.Password
                 
-                admin_page.execute("INSERT INTO `user` (`ID_User`, `Name`, `Phone`, `Email`, `Password`) VALUES (%s, %s, %s, %s, %s);",
-                                     (ID_User, Name, Phone, Email, Password,))
+                admin_page.execute("INSERT INTO `user` (`ID_Usertype`, `Name`, `Phone`, `Email`, `Password`) VALUES (%s, %s, %s, %s, %s);",
+                                     (ID_Usertype, Name, Phone, Email, Password,))
                 connection.commit()
             
             connection.close()
@@ -52,13 +66,14 @@ class AdminServices():
 
             with connection.cursor() as admin_page:
                 ID_User = user.ID_User
+                ID_Usertype = user.ID_Usertype
                 Name = user.Name
                 Phone = user.Phone
                 Email = user.Email
                 Password = user.Password
 
-                admin_page.execute("UPDATE user SET Name = %s, Phone = %s, Email = %s, Password = %s WHERE ID_User = %s",
-                                     (Name, Phone, Email, Password, ID_User))
+                admin_page.execute("UPDATE user SET ID_Usertype = %s, Name = %s, Phone = %s, Email = %s, Password = %s WHERE ID_User = %s",
+                                     (ID_Usertype, Name, Phone, Email, Password, ID_User))
                 connection.commit()
 
             connection.close()
