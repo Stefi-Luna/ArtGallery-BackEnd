@@ -1,22 +1,22 @@
-from flask import Blueprint, request
-from src.services.PaintingsServices import PaintingsServices
-from src.models.artisticModel import Artistics
+from flask import Blueprint, request, jsonify
+from src.services.ArtServices import ArtServices
+from src.models.artisticModel import Artistic
 
-main = Blueprint('paintings_blueprint',__name__)
+main = Blueprint('artistics_blueprint',__name__)
 
 @main.route('/', methods=['GET'])
-def get_Artistics():
+def get_Artistic():
     
-    get_paintings=PaintingsServices.get_Artistics()
-    print(get_Artistics)
+    get_Artistic=ArtServices.get_Artistic()
+    print(get_Artistic)
 
     print('Esto se imprime en consola, GET')
-    return 'Get exitoso'
+    return jsonify(get_Artistic)
 
 @main.route('/create',methods=['POST'])
-def post_Artistics():
+def post_Artistic():
 
-    ID_Art = request.json['ID_Art']
+    ID_Art = ""
     ID_User = request.json['ID_User']
     Title = request.json['Title']
     Description = request.json['Description']
@@ -25,9 +25,9 @@ def post_Artistics():
     Image = request.json['Image']
     Stock = request.json['Stock']
 
-    painting1 = Artistics(ID_Art,ID_User,Title,Description,Measurements,Unit_Price,Image,Stock)
+    painting1 = Artistic(ID_Art,ID_User,Title,Description,Measurements,Unit_Price,Image,Stock)
 
-    post_paintings=PaintingsServices.post_Artistics(painting1)
+    post_Artistics=ArtServices.post_Artistics(painting1)
     print(post_Artistics)
 
     print('Esto se imprime en consola, PUT')
@@ -45,9 +45,9 @@ def update_Artistics():
     Image = request.json['Image']
     Stock = request.json['Stock']
 
-    painting1 = Artistics(ID_Art,ID_User,Title,Description,Measurements,Unit_Price,Image,Stock)
+    painting1 = Artistic(ID_Art,ID_User,Title,Description,Measurements,Unit_Price,Image,Stock)
 
-    update_paintings=PaintingsServices.update_Artistics(painting1)
+    update_Artistics=ArtServices.update_Artistics(painting1)
     print(update_Artistics)
 
     print('Esto se imprime en consola, UPDATE')
@@ -58,7 +58,7 @@ def delete_Artistics():
 
     ID_Art = request.json['ID_Art']
 
-    delete_paintings=PaintingsServices.delete_Artistics(ID_Art)
+    delete_Artistics=ArtServices.delete_Artistics(ID_Art)
     print(delete_Artistics)
 
     print('Esto se imprime en consola, DELETE')

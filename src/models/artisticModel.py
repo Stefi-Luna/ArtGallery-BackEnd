@@ -1,4 +1,4 @@
-class Artistics():
+class Artistic():
     def __init__(self, ID_Art, ID_User, Title, Description, Measurements, Unit_Price, Image, Stock) -> None:
         self.ID_Art=ID_Art
         self.ID_User=ID_User
