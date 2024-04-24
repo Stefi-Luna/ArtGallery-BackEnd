@@ -13,10 +13,10 @@ class AuthService():
             with connection.cursor() as cursor:
                 # Ejecutar la consulta SQL para verificar el nombre de usuario y la contraseña
                 cursor.callproc("AuthenticateUser", (Name, Password))
-                print("rrrrrrrrrrrrrrrrrrrrrrr")
+            
                 print(Name)
                 print(Password)
-                print("rrrrrrrrrrrrrrrrrrrrrrr")
+                
                 # Obtener el resultado de la consulta
                 result = cursor.fetchone()
                 print(result)
@@ -30,7 +30,7 @@ class AuthService():
                     return None
                 
         except Exception as ex:
-            print ("gggggggggggggggggggggggggg")
+            
             # Manejar cualquier excepción que pueda ocurrir durante la autenticación
             print(ex)
 

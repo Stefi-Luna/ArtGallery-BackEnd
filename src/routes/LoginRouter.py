@@ -7,12 +7,12 @@ login_routes = Blueprint('login_routes', __name__)
 
 @login_routes.route('/api/login', methods=['POST'])
 def login():
-    print("nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn")
+   
     Name = request.json.get('name')
     Password = request.json.get('password') 
     print(Name)
     print(Password)
-    print("dfffffffffffffffffffffff")
+   
     
     #  verificar las credenciales en la base de datos
     user_data = AuthService.authenticate(Name, Password)
