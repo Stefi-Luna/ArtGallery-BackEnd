@@ -14,18 +14,18 @@ def login():
     print(Password)
    
     
-    #  verificar las credenciales en la base de datos
+    
     user_data = AuthService.authenticate(Name, Password)
 
     if user_data:
-        # Obtener el nombre y el rol del usuario autenticado
+       
         Name = user_data['Name']
         Role = user_data['Role']
 
-        # Generar el token JWT para el usuario
+        
         token = AuthService.generate_token(Name)
         print(token)
-        # Devolver la respuesta con el token y el rol del usuario
+        
         response = {
             'token': token,
             'role': Role
